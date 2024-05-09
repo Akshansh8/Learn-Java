@@ -58,16 +58,33 @@ class PrintingAlpha implements Runnable{
     }
 }
 public class LaunchThread1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Banking b = new Banking();
         PrintingNum pn = new PrintingNum();
         PrintingAlpha pa = new PrintingAlpha();
          Thread t1 = new Thread(b);
          Thread t2 = new Thread(pn);
          Thread t3 = new Thread(pa);
+
+         System.out.println(t1.isAlive());
+        System.out.println(t2.isAlive());
+        System.out.println(t3.isAlive());
          t1.start();
          t2.start();
          t3.start();
+
+        System.out.println(t1.isAlive());
+        System.out.println(t2.isAlive());
+        System.out.println(t3.isAlive());
+        t1.join();
+        t2.join();
+        t3.join();
+        System.out.println("Resoureces closed");
+        System.out.println("Main thread over");
+
+
+
+
 
     }
 }
